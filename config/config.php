@@ -18,7 +18,7 @@ return [
      * The driver to be used for converting Text to Speech
      * You can choose polly, or null as of the moment.
      */
-    'driver' => env('TTS_DRIVER', null),
+    'driver' => env('TTS_DRIVER', 'polly'),
 
     'services' => [
         'polly' => [

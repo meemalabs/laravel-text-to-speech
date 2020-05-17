@@ -62,7 +62,7 @@ class PollyConverter implements Converter
      *
      * @param mixed $data
      * @param array $options
-     * @return void
+     * @return string
      */
     public function convert($data, array $options = null)
     {
@@ -73,7 +73,7 @@ class PollyConverter implements Converter
         ]);
 
         // Store audio file to disk
-        $this->store($this->getResultContent($result));
+        return $this->store($this->getResultContent($result));
     }
 
     /**

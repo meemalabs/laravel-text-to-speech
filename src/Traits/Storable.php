@@ -50,7 +50,7 @@ trait Storable
      * Execute the store.
      *
      * @param mixed $resultContent
-     * @return void
+     * @return string
      */
     protected function store($resultContent)
     {
@@ -59,15 +59,44 @@ trait Storable
         $storage = Storage::disk($this->disk ?: config('tts.disk'));
 
         $storage->put($this->path, $resultContent);
+
+        return $this->path;
     }
 
     /**
-     * Ensures the path not to be null. If it is null it will set a default path.
+     * Ensures the path not to be null if it is null it will set a default path.
      *
      * @return void
      */
     protected function ensurePathIsNotNull()
     {
-        $this->path = $this->path ?: '/TTS/'.now()->timestamp.config('tts.output_format');
+        $filename = $this->path ?: 'TTS/'.now()->timestamp;
+
+        if (!$this->hasExtension($filename)) {
+            $filename .= '.'.$this->getExtension();
+        }
+
+        $this->path = $filename;
+    }
+
+    /**
+     * Determine if filename includes file extension.
+     *
+     * @param  string  $filename
+     * @return boolean
+     */
+    protected function hasExtension($filename)
+    {
+        return (bool) pathinfo($filename, PATHINFO_EXTENSION);
+    }
+
+    /**
+     * Get audio file extension.
+     *
+     * @return string
+     */
+    protected function getExtension()
+    {
+        return config('tts.output_format');
     }
 }
