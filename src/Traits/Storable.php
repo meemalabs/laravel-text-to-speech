@@ -2,6 +2,7 @@
 
 namespace Cion\TextToSpeech\Traits;
 
+use Cion\TextToSpeech\Contracts\Formatter;
 use Illuminate\Support\Facades\Storage;
 
 trait Storable
@@ -24,6 +25,7 @@ trait Storable
      * Set where to store the converted file.
      *
      * @param string $disk
+     * 
      * @return $this
      */
     public function disk(string $disk)
@@ -37,6 +39,7 @@ trait Storable
      * Set path to where to store the converted file.
      *
      * @param string $path
+     * 
      * @return $this
      */
     public function saveTo(string $path)
@@ -49,12 +52,14 @@ trait Storable
     /**
      * Execute the store.
      *
+     * @param string $text
      * @param mixed $resultContent
+     * 
      * @return string
      */
-    protected function store($resultContent)
+    protected function store($text, $resultContent)
     {
-        $this->ensurePathIsNotNull();
+        $this->ensurePathIsNotNull($text, $resultContent);
 
         $storage = Storage::disk($this->disk ?: config('tts.disk'));
 
@@ -66,11 +71,14 @@ trait Storable
     /**
      * Ensures the path not to be null if it is null it will set a default path.
      *
+     * @param string $text
+     * @param mixed $audio
+     * 
      * @return void
      */
-    protected function ensurePathIsNotNull()
+    protected function ensurePathIsNotNull($text, $audio)
     {
-        $filename = $this->path ?: 'TTS/'.now()->timestamp;
+        $filename = $this->path ?: $this->getDefaultPath() . '/' . $this->getDefaultFilename($text, $audio);
 
         if (! $this->hasExtension($filename)) {
             $filename .= '.'.$this->getExtension();
@@ -98,5 +106,28 @@ trait Storable
     protected function getExtension()
     {
         return config('tts.output_format');
+    }
+
+    /**
+     * Get default filename returned in Filename Formatter.
+     *
+     * @param string $text
+     * @param mixed $audio
+     * 
+     * @return string
+     */
+    protected function getDefaultFilename($text, $audio)
+    {
+        return app(Formatter::class)->handle($text, $audio);
+    }
+
+    /**
+     * Get the default path.
+     *
+     * @return string
+     */
+    protected function getDefaultPath()
+    {
+        return config('tts.audio.path');
     }
 }

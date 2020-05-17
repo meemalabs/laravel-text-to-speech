@@ -20,6 +20,18 @@ return [
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
+    'audio' => [
+        /**
+         * Default path to store the output file.
+         */
+        'path' => 'TTS',
+
+        /**
+         * Default filename formatter.
+         */
+        'formatter' => \Cion\TextToSpeech\Formatters\DefaultFilenameFormatter::class,
+    ],
+
     'services' => [
         'polly' => [
             /**

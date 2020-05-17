@@ -73,7 +73,10 @@ class PollyConverter implements Converter
         ]);
 
         // Store audio file to disk
-        return $this->store($this->getResultContent($result));
+        return $this->store(
+            $this->getTextFromSource($data), 
+            $this->getResultContent($result)
+        );
     }
 
     /**

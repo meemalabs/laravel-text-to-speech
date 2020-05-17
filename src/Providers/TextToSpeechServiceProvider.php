@@ -2,7 +2,9 @@
 
 namespace Cion\TextToSpeech\Providers;
 
+use Cion\TextToSpeech\Contracts\Formatter;
 use Cion\TextToSpeech\Facades\TextToSpeech;
+use Cion\TextToSpeech\Formatters\DefaultFilenameFormatter;
 use Cion\TextToSpeech\TextToSpeechManager;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +32,8 @@ class TextToSpeechServiceProvider extends ServiceProvider
         $this->registerTextToSpeechManager();
 
         $this->registerAliases();
+
+        $this->bindFilenameFormatter();
     }
 
     /**
@@ -52,6 +56,16 @@ class TextToSpeechServiceProvider extends ServiceProvider
     protected function registerAliases()
     {
         $this->app->alias(TextToSpeech::class, 'TTS');
+    }
+
+    /**
+     * Binds the filename formatter.
+     *
+     * @return void
+     */
+    protected function bindFilenameFormatter()
+    {
+        $this->app->bind(Formatter::class, config('tts.audio.formatter'));
     }
 
     /**
