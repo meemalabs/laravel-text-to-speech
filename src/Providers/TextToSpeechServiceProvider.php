@@ -4,7 +4,6 @@ namespace Cion\TextToSpeech\Providers;
 
 use Cion\TextToSpeech\Contracts\Formatter;
 use Cion\TextToSpeech\Facades\TextToSpeech;
-use Cion\TextToSpeech\Formatters\DefaultFilenameFormatter;
 use Cion\TextToSpeech\TextToSpeechManager;
 use Illuminate\Support\ServiceProvider;
 

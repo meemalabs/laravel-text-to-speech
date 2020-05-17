@@ -25,7 +25,7 @@ trait Storable
      * Set where to store the converted file.
      *
      * @param string $disk
-     * 
+     *
      * @return $this
      */
     public function disk(string $disk)
@@ -39,7 +39,7 @@ trait Storable
      * Set path to where to store the converted file.
      *
      * @param string $path
-     * 
+     *
      * @return $this
      */
     public function saveTo(string $path)
@@ -54,7 +54,7 @@ trait Storable
      *
      * @param string $text
      * @param mixed $resultContent
-     * 
+     *
      * @return string
      */
     protected function store($text, $resultContent)
@@ -73,12 +73,12 @@ trait Storable
      *
      * @param string $text
      * @param mixed $audio
-     * 
+     *
      * @return void
      */
     protected function ensurePathIsNotNull($text, $audio)
     {
-        $filename = $this->path ?: $this->getDefaultPath() . '/' . $this->getDefaultFilename($text, $audio);
+        $filename = $this->path ?: $this->getDefaultPath().'/'.$this->getDefaultFilename($text, $audio);
 
         if (! $this->hasExtension($filename)) {
             $filename .= '.'.$this->getExtension();
@@ -113,7 +113,7 @@ trait Storable
      *
      * @param string $text
      * @param mixed $audio
-     * 
+     *
      * @return string
      */
     protected function getDefaultFilename($text, $audio)
