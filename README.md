@@ -25,6 +25,7 @@ composer require cion/laravel-text-to-speech
 
 ``` php
 use Cion\TextToSpeech\Facades\TextToSpeech;
+
 // You can use disk() methods that are supported in Laravel's Filesystem
 TextToSpeech::disk('local')
     ->saveTo($path)
@@ -32,6 +33,8 @@ TextToSpeech::disk('local')
 ```
 
 ``` php
+use Cion\TextToSpeech\Facades\TextToSpeech;
+
 // You can also use source() in order to choose the source of the text to be converted
 TextToSpeech::saveTo($path)
     ->source('path')
@@ -39,6 +42,8 @@ TextToSpeech::saveTo($path)
 ```
 
 ``` php
+use Cion\TextToSpeech\Facades\TextToSpeech;
+
 // This will save the output in the `storage/TTS` directory
 TextToSpeech::convert($text);
 ```
