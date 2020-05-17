@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":311:{a:2:{s:7:"defects";a:2:{s:50:"Cion\AmazonPolly\Tests\ExampleTest::true_is_true";i:4;s:56:"Cion\AmazonPolly\Tests\PollyTest::it_can_create_client";i:5;}s:5:"times";a:2:{s:50:"Cion\AmazonPolly\Tests\ExampleTest::true_is_true";d:0.14;s:56:"Cion\AmazonPolly\Tests\PollyTest::it_can_create_client";d:0.144;}}}

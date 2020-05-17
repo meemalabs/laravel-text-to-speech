@@ -1,0 +1,59 @@
+{
+    "name": "cion/laravel-text-to-speech",
+    "description": "",
+    "keywords": [
+        "Cion",
+        "text-to-speech"
+    ],
+    "homepage": "https://github.com/ci-on/laravel-text-to-speech",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "CION Agency",
+            "email": "chris@cion.agency"
+        },
+        {
+            "name": "Rigel Kent Carbonel",
+            "email": "rigel20.kent@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0|^7.2|^7.3|^7.4",
+        "guzzlehttp/guzzle": "^6.0|^7.0",
+        "illuminate/support": "5.*|^6.0|^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.5.0|^3.6.0|^4.0|^5.0",
+        "phpunit/phpunit": "^5.0|^6.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cion\\TextToSpeech\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cion\\TextToSpeech\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cion\\TextToSpeech\\Providers\\TextToSpeechServiceProvider"
+            ],
+            "aliases": {
+                "TTS": "Cion\\TextToSpeech\\Facades\\TextToSpeechFacade"
+            }
+        }
+    }
+}
