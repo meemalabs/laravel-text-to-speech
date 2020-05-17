@@ -4,10 +4,10 @@ namespace Cion\TextToSpeech\Converters;
 
 use Aws\Credentials\Credentials;
 use Aws\Polly\PollyClient;
-use Illuminate\Support\Arr;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\Sourceable;
 use Cion\TextToSpeech\Traits\Storable;
+use Illuminate\Support\Arr;
 
 class PollyConverter implements Converter
 {

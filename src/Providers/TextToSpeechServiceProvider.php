@@ -2,9 +2,9 @@
 
 namespace Cion\TextToSpeech\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Cion\TextToSpeech\Facades\TextToSpeech;
 use Cion\TextToSpeech\TextToSpeechManager;
+use Illuminate\Support\ServiceProvider;
 
 class TextToSpeechServiceProvider extends ServiceProvider
 {

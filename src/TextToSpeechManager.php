@@ -3,10 +3,10 @@
 namespace Cion\TextToSpeech;
 
 use Aws\Polly\PollyClient;
-use Exception;
-use Illuminate\Support\Manager;
 use Cion\TextToSpeech\Converters\NullConverter;
 use Cion\TextToSpeech\Converters\PollyConverter;
+use Exception;
+use Illuminate\Support\Manager;
 
 class TextToSpeechManager extends Manager
 {
