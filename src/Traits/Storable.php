@@ -72,7 +72,7 @@ trait Storable
     {
         $filename = $this->path ?: 'TTS/'.now()->timestamp;
 
-        if (!$this->hasExtension($filename)) {
+        if (! $this->hasExtension($filename)) {
             $filename .= '.'.$this->getExtension();
         }
 
@@ -83,7 +83,7 @@ trait Storable
      * Determine if filename includes file extension.
      *
      * @param  string  $filename
-     * @return boolean
+     * @return bool
      */
     protected function hasExtension($filename)
     {
