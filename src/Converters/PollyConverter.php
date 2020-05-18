@@ -29,8 +29,6 @@ class PollyConverter implements Converter
         $this->client = $client;
     }
 
-    
-
     /**
      * Get the Polly Client.
      *
