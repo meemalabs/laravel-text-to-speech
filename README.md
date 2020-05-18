@@ -22,14 +22,35 @@ You can install the package via composer:
 composer require cion/laravel-text-to-speech
 ```
 
+Add these configuration in your `.env` file.
+```env
+AWS_VOICE_ID=Amy
+AWS_ACCESS_KEY_ID=xxxxxxx
+AWS_SECRET_ACCESS_KEY=xxxxxxx
+AWS_DEFAULT_REGION=us-east-1
+
+TTS_DRIVER=polly
+TTS_DISK=local
+TTS_OUTPUT_FORMAT=mp3
+```
 ## Usage
 
 ``` php
 use Cion\TextToSpeech\Facades\TextToSpeech;
 
 // You can use disk() methods that are supported in Laravel's Filesystem
+TextToSpeech::disk('s3')
+    ->saveTo('TTS/speech.mp3')
+    ->source('path')
+    ->convert('/path/to/file');
+```
+
+``` php
+use Cion\TextToSpeech\Facades\TextToSpeech;
+
 TextToSpeech::disk('local')
     ->saveTo($path)
+    ->source('text')
     ->convert($text);
 ```
 
