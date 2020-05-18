@@ -1,5 +1,6 @@
 # Text to Speech Package for Laravel
 
+![Test](https://github.com/ci-on/laravel-text-to-speech/workflows/Test/badge.svg?branch=master)
 [![StyleCI](https://github.styleci.io/repos/264578171/shield?branch=master)](https://github.styleci.io/repos/264578171)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cion/laravel-text-to-speech.svg?style=flat-square)](https://packagist.org/packages/cion/laravel-text-to-speech)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ci-on/laravel-text-to-speech/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ci-on/laravel-text-to-speech/?branch=master)
