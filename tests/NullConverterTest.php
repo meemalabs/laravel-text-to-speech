@@ -13,6 +13,6 @@ class NullConverterTest extends TextToSpeechTestCase
 
         $result = (new NullConverter)->convert($textToConvert);
 
-        $this->assertSame('TTS/' . md5($textToConvert) . '.mp3', $result);
+        $this->assertSame('TTS/'.md5($textToConvert).'.mp3', $result);
     }
 }
