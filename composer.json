@@ -1,9 +1,13 @@
 {
     "name": "cion/laravel-text-to-speech",
-    "description": "",
+    "description": "This package creates a shared API to easily use Text to Speech functionalities amongst different TTS providers.",
     "keywords": [
         "cion",
-        "text-to-speech"
+        "text-to-speech",
+        "laravel",
+        "polly",
+        "wavenet",
+        "aws"
     ],
     "homepage": "https://github.com/ci-on/laravel-text-to-speech",
     "license": "MIT",
@@ -41,7 +45,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
