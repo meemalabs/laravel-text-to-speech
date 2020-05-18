@@ -19,6 +19,6 @@ class NullConverter implements Converter
      */
     public function convert($data, array $options = null)
     {
-        return $this->store($data);
+        return $this->store($data, null);
     }
 }
