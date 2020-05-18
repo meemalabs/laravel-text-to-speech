@@ -8,14 +8,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PollyConverterTest extends TextToSpeechTestCase
 {
-
     /**
      * @var PollyClient
      */
     protected $client;
 
     /**
-     * Setup client and results
+     * Setup client and results.
      *
      * @return void
      */
@@ -85,17 +84,17 @@ class PollyConverterTest extends TextToSpeechTestCase
         $this->assertTrue(strpos($path, '.mp3') !== false);
     }
 
-        /** @test */
-        public function it_should_specify_path_source_and_be_able_to_retrieve_text()
-        {
-            Storage::fake('s3');
-    
-            $converter = new PollyConverter($this->client);
-    
-            $path = $converter->disk('local')
+    /** @test */
+    public function it_should_specify_path_source_and_be_able_to_retrieve_text()
+    {
+        Storage::fake('s3');
+
+        $converter = new PollyConverter($this->client);
+
+        $path = $converter->disk('local')
                 ->source('path')
                 ->convert('tests/TestFiles/test.txt');
-    
-            Storage::assertExists($path);
-        }
+
+        Storage::assertExists($path);
+    }
 }
