@@ -63,7 +63,7 @@ return [
              * Mizuki, Naja, Nicole, Penelope, Raveena, Ricardo, Ruben, Russell,
              * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu.
              */
-            'voice_id' => 'Amy',
+            'voice_id' => env('AWS_VOICE_ID', 'Amy'),
 
             /**
              * IAM Credentials from AWS.
