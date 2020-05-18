@@ -2,6 +2,7 @@
 
 namespace Cion\TextToSpeech;
 
+use Aws\Credentials\Credentials;
 use Aws\Polly\PollyClient;
 use Cion\TextToSpeech\Converters\NullConverter;
 use Cion\TextToSpeech\Converters\PollyConverter;
@@ -30,9 +31,41 @@ class TextToSpeechManager extends Manager
     {
         $this->ensureAwsSdkIsInstalled();
 
+        $config = $this->config['tts.services.polly'];
+
+        $credentials = $this->getCredentials($config['credentials']);
+
+        $client = $this->setPollyClient($config, $credentials);
+
         return new PollyConverter(
-           $this->config['tts.services.polly']
+           $client
        );
+    }
+
+    /**
+     * Sets the polly client
+     *
+     * @param array $config
+     * @param Credentials $credentials
+     * @return PollyClient
+     */
+    protected function setPollyClient(array $config, Credentials $credentials)
+    {
+        return new PollyClient([
+            'version'     => $config['version'],
+            'region'      => $config['region'],
+            'credentials' => $credentials,
+        ]);
+    }
+    /**
+     * Get credentials of AWS.
+     *
+     * @param array $credentials
+     * @return \Aws\Credentials\Credentials
+     */
+    protected function getCredentials(array $credentials)
+    {
+        return new Credentials($credentials['key'], $credentials['secret']);
     }
 
     /**

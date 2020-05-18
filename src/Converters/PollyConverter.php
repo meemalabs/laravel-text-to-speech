@@ -2,7 +2,6 @@
 
 namespace Cion\TextToSpeech\Converters;
 
-use Aws\Credentials\Credentials;
 use Aws\Polly\PollyClient;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\Sourceable;
@@ -23,29 +22,14 @@ class PollyConverter implements Converter
     /**
      * Construct converter.
      *
-     * @param array $config
+     * @param PollyClient $client
      */
-    public function __construct($config)
+    public function __construct(PollyClient $client)
     {
-        $credentials = $this->getCredentials($config['credentials']);
-
-        $this->client = new PollyClient([
-            'version'     => $config['version'],
-            'region'      => $config['region'],
-            'credentials' => $credentials,
-        ]);
+        $this->client = $client;
     }
 
-    /**
-     * Get credentials of AWS.
-     *
-     * @param array $credentials
-     * @return \Aws\Credentials\Credentials
-     */
-    protected function getCredentials(array $credentials)
-    {
-        return new Credentials($credentials['key'], $credentials['secret']);
-    }
+    
 
     /**
      * Get the Polly Client.
