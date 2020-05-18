@@ -60,11 +60,11 @@ class PollyConverter implements Converter
     /**
      * Converts the text to speech.
      *
-     * @param mixed $data
+     * @param string $data
      * @param array $options
      * @return string
      */
-    public function convert($data, array $options = null)
+    public function convert(string $data, array $options = null)
     {
         $result = $this->client->synthesizeSpeech([
             'VoiceId'      => $this->voice($options),

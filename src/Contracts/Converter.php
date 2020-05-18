@@ -11,7 +11,7 @@ interface Converter
      * @param array $options
      * @return mixed
      */
-    public function convert($text, array $options = null);
+    public function convert(string $text, array $options = null);
 
     /**
      * Set where to store the converted file.

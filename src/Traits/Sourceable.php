@@ -2,6 +2,8 @@
 
 namespace Cion\TextToSpeech\Traits;
 
+use Cion\TextToSpeech\Contracts\Source;
+
 trait Sourceable
 {
     /**
@@ -9,7 +11,7 @@ trait Sourceable
      *
      * @var string
      */
-    protected $source = 'text';
+    protected $source;
 
     /**
      * Sets the source.
@@ -26,41 +28,16 @@ trait Sourceable
 
     /**
      * Get text from source.
-     * @param mixed $data
+     * @param string $data
      * @return string
      */
-    protected function getTextFromSource($data)
+    protected function getTextFromSource(string $data): string
     {
-        switch ($this->source) {
-            case 'text':
-                return $data;
-            case 'path':
-                return $this->getTextFromPath($data);
-            case 'website':
-                return $this->getTextFromWebsite($data);
-
+        if ($this->source !== null)
+        {
+            app()->bind(Source::class, config('tts.sources.' . $this->source));
         }
-    }
 
-    /**
-     * Get text from the path.
-     *
-     * @param string $path
-     * @return string
-     */
-    protected function getTextFromPath(string $path)
-    {
-        return file_get_contents($path);
-    }
-
-    /**
-     * Get text from the website.
-     *
-     * @param string $url
-     * @return string
-     */
-    protected function getTextFromWebsite(string $url)
-    {
-        // WIP
+        return app(Source::class)->handle($data);
     }
 }

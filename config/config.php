@@ -32,6 +32,23 @@ return [
         'formatter' => \Cion\TextToSpeech\Formatters\DefaultFilenameFormatter::class,
     ],
 
+    /**
+     * The default source that will be used.
+     */
+    'default_source' => 'text',
+
+    /**
+     * The source that can be used.
+     * You can create your own source by implementing the Source interface
+     * 
+     * @see \Cion\TextToSpeech\Contracts\Source
+     */
+    'sources' => [
+        'text'    => \Cion\TextToSpeech\Sources\TextSource::class,
+        'path'    => \Cion\TextToSpeech\Sources\PathSource::class,
+        'website' => \Cion\TextToSpeech\Sources\WebsiteSource::class,
+    ],
+
     'services' => [
         'polly' => [
             /**
@@ -52,8 +69,8 @@ return [
              * IAM Credentials from AWS.
              */
             'credentials' => [
-                'key'    => env('AWS_ACCESS_KEY_ID', ''),
-                'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
+                'key'     => env('AWS_ACCESS_KEY_ID', ''),
+                'secret'  => env('AWS_SECRET_ACCESS_KEY', ''),
             ],
 
             'region' => env('AWS_REGION', 'us-east-1'),
