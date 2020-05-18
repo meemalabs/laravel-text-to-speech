@@ -77,7 +77,7 @@ class TextToSpeechServiceProvider extends ServiceProvider
      */
     protected function bindSource()
     {
-        $this->app->bind(Source::class, config('tts.sources.' . config('tts.default_source')));
+        $this->app->bind(Source::class, config('tts.sources.'.config('tts.default_source')));
     }
 
     /**

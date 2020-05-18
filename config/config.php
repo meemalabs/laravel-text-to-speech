@@ -39,8 +39,8 @@ return [
 
     /**
      * The source that can be used.
-     * You can create your own source by implementing the Source interface
-     * 
+     * You can create your own source by implementing the Source interface.
+     *
      * @see \Cion\TextToSpeech\Contracts\Source
      */
     'sources' => [

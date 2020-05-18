@@ -33,9 +33,8 @@ trait Sourceable
      */
     protected function getTextFromSource(string $data): string
     {
-        if ($this->source !== null)
-        {
-            app()->bind(Source::class, config('tts.sources.' . $this->source));
+        if ($this->source !== null) {
+            app()->bind(Source::class, config('tts.sources.'.$this->source));
         }
 
         return app(Source::class)->handle($data);
