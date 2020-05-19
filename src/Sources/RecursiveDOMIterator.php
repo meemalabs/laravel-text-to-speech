@@ -8,13 +8,13 @@ use RecursiveIterator;
 class RecursiveDOMIterator implements RecursiveIterator
 {
     /**
-     * Current Position in DOMNodeList
-     * @var Integer
+     * Current Position in DOMNodeList.
+     * @var int
      */
     protected $_position;
 
     /**
-     * The DOMNodeList with all children to iterate over
+     * The DOMNodeList with all children to iterate over.
      * @var DOMNodeList
      */
     protected $_nodeList;
@@ -30,7 +30,7 @@ class RecursiveDOMIterator implements RecursiveIterator
     }
 
     /**
-     * Returns the current DOMNode
+     * Returns the current DOMNode.
      * @return DOMNode
      */
     public function current()
@@ -39,7 +39,7 @@ class RecursiveDOMIterator implements RecursiveIterator
     }
 
     /**
-     * Returns an iterator for the current iterator entry
+     * Returns an iterator for the current iterator entry.
      * @return RecursiveDOMIterator
      */
     public function getChildren()
@@ -49,7 +49,7 @@ class RecursiveDOMIterator implements RecursiveIterator
 
     /**
      * Returns if an iterator can be created for the current entry.
-     * @return Boolean
+     * @return bool
      */
     public function hasChildren()
     {
@@ -57,8 +57,8 @@ class RecursiveDOMIterator implements RecursiveIterator
     }
 
     /**
-     * Returns the current position
-     * @return Integer
+     * Returns the current position.
+     * @return int
      */
     public function key()
     {
@@ -75,7 +75,7 @@ class RecursiveDOMIterator implements RecursiveIterator
     }
 
     /**
-     * Rewind the Iterator to the first element
+     * Rewind the Iterator to the first element.
      * @return void
      */
     public function rewind()
@@ -84,8 +84,8 @@ class RecursiveDOMIterator implements RecursiveIterator
     }
 
     /**
-     * Checks if current position is valid
-     * @return Boolean
+     * Checks if current position is valid.
+     * @return bool
      */
     public function valid()
     {

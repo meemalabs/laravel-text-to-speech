@@ -19,8 +19,7 @@ class WebsiteSource implements SourceContract
     {
         $articles = $this->getDOMDocumentArticle($data);
 
-        if ($articles === null)
-        {
+        if ($articles === null) {
             return '';
         }
 
@@ -38,8 +37,7 @@ class WebsiteSource implements SourceContract
         @$dom->loadHTML(file_get_contents($url));
         $element = $dom->getElementsByTagName('article')->item(0);
 
-        if ($element !== null)
-        {
+        if ($element !== null) {
             return $element->childNodes;
         }
     }
@@ -54,11 +52,9 @@ class WebsiteSource implements SourceContract
     {
         $text = '';
 
-        for ($i = 0; $i < $articles->length; $i++)
-        {
+        for ($i = 0; $i < $articles->length; $i++) {
             // Check element if there is a childNodes
-            if ($articles->item($i)->childNodes === null)
-            {
+            if ($articles->item($i)->childNodes === null) {
                 continue;
             }
 
@@ -66,15 +62,13 @@ class WebsiteSource implements SourceContract
                 new RecursiveDOMIterator($articles->item($i)),
                 RecursiveIteratorIterator::SELF_FIRST
             );
-            foreach ($dit as $node)
-            {
-                if ($node->nodeName === 'p')
-                {
+            foreach ($dit as $node) {
+                if ($node->nodeName === 'p') {
                     $text .= $node->textContent;
                 }
             }
         }
-        
+
         return $text;
     }
 }
