@@ -21,7 +21,6 @@ class RecursiveDOMIterator implements RecursiveIterator
 
     /**
      * @param DOMNode $domNode
-     * @return void
      */
     public function __construct(DOMNode $domNode)
     {
