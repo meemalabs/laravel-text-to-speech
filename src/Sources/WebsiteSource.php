@@ -70,7 +70,7 @@ class WebsiteSource implements SourceContract
             {
                 if ($node->nodeName === 'p')
                 {
-                    $text .= $node->textContent;
+                    $text .= $node->textContent . ' ';
                 }
             }
         }
