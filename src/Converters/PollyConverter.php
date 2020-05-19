@@ -3,6 +3,7 @@
 namespace Cion\TextToSpeech\Converters;
 
 use Aws\Polly\PollyClient;
+use Aws\Result;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\Sourceable;
 use Cion\TextToSpeech\Traits\Storable;
@@ -48,17 +49,103 @@ class PollyConverter implements Converter
      */
     public function convert(string $data, array $options = null)
     {
-        $result = $this->client->synthesizeSpeech([
-            'VoiceId'      => $this->voice($options),
-            'OutputFormat' => $this->format($options),
-            'Text'         => $this->getTextFromSource($data),
-        ]);
+        $text = $this->getTextFromSource($data);
 
-        // Store audio file to disk
+        if ($this->isTextAboveLimit($text))
+        {
+            $text = $this->getChunkText($text);
+        }
+
+        $result = $this->synthesizeSpeech($text, $options);
+
+        if ($result instanceof Result)
+        {
+            // Store audio file to disk
+            return $this->store(
+                $this->getTextFromSource($data),
+                $this->getResultContent($result)
+            );
+        }
+
         return $this->store(
             $this->getTextFromSource($data),
-            $this->getResultContent($result)
+            $this->mergeOutputs($result)
         );
+
+    }
+
+    /**
+     * Request to Amazon Polly to synthesize speech.
+     *
+     * @param string|array $text
+     * @param array $options
+     * @return array|\Aws\Result;
+     */
+    protected function synthesizeSpeech($text, array $options = null)
+    {
+        if (is_string($text))
+        {
+            return $this->client->synthesizeSpeech([
+                'VoiceId'      => $this->voice($options),
+                'OutputFormat' => $this->format($options),
+                'TextType'     => 'ssml',
+                'Text'         => '<speak>' . $text . '</speak>',
+            ]);
+        }
+
+        $results = [];
+
+        foreach ($text as $item)
+        {
+            $result = $this->client->synthesizeSpeech([
+                'VoiceId'      => $this->voice($options),
+                'OutputFormat' => $this->format($options),
+                'Text'         => $item,
+            ]);
+
+            array_push($results, $result);
+        }
+
+        return $results;
+    }
+
+    /**
+     * Merges the output from amazon polly
+     *
+     * @return mixed
+     */
+    protected function mergeOutputs(array $results)
+    {
+        $mergedResult = null;
+        foreach ($results as $result)
+        {
+            $mergedResult .= $this->getResultContent($result);
+        }
+
+        return $mergedResult;
+    }
+
+    /**
+     * Checks the length of the text if more than 3000
+     *
+     * @param string $text
+     * @return boolean
+     */
+    protected function isTextAboveLimit(string $text)
+    {
+        return strlen($text) > 2000;
+    }
+
+    /**
+     * Chunk the given text into array
+     *
+     * @param string $text
+     * @param int $size
+     * @return array
+     */
+    protected function getChunkText(string $text, int $size = 2000)
+    {
+        return explode( "\n", wordwrap($text, $size));
     }
 
     /**
