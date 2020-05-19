@@ -3,6 +3,9 @@
 namespace Cion\TextToSpeech\Sources;
 
 use Cion\TextToSpeech\Contracts\Source as SourceContract;
+use DOMDocument;
+use DOMNodeList;
+use RecursiveIteratorIterator;
 
 class WebsiteSource implements SourceContract
 {
@@ -14,7 +17,64 @@ class WebsiteSource implements SourceContract
      */
     public function handle(string $data): string
     {
-        // WIP
-        return '';
+        $articles = $this->getDOMDocumentArticle($data);
+
+        if ($articles === null)
+        {
+            return '';
+        }
+
+        return $this->getTextFromArticle($articles);
+    }
+
+    /**
+     * Get the DOM Node List of article tag.
+     *
+     * @return DOMNodeList|null
+     */
+    protected function getDOMDocumentArticle(string $url)
+    {
+        $dom = new DOMDocument();
+        @$dom->loadHTML(file_get_contents($url));
+        $element = $dom->getElementsByTagName('article')->item(0);
+
+        if ($element !== null)
+        {
+            return $element->childNodes;
+        }
+    }
+
+    /**
+     * Get text from the articles DOM Node List.
+     *
+     * @param DOMNodeList $articles
+     * @return string
+     */
+    protected function getTextFromArticle(DOMNodeList $articles): string
+    {
+        $text = '';
+
+        for ($i = 0; $i < $articles->length; $i++)
+        {
+            // Check element if there is a childNodes
+            if ($articles->item($i)->childNodes === null)
+            {
+                continue;
+            }
+
+            $dit = new RecursiveIteratorIterator(
+                new RecursiveDOMIterator($articles->item($i)),
+                RecursiveIteratorIterator::SELF_FIRST
+            );
+            foreach ($dit as $node)
+            {
+                if ($node->nodeName === 'p')
+                {
+                    $text .= $node->textContent;
+                }
+            }
+        }
+        
+        return $text;
     }
 }
