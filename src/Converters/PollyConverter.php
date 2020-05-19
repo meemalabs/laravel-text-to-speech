@@ -79,15 +79,15 @@ class PollyConverter implements Converter
      *
      * @param string|array $text
      * @param array $options
-     * @return array|\Aws\Result;
+     * @return array|\Aws\Result
      */
     protected function synthesizeSpeech($text, array $options = null)
     {
         if (is_string($text))
         {
             return $this->client->synthesizeSpeech([
-                'VoiceId'      => $this->voice($options),
-                'OutputFormat' => $this->format($options),
+                'VoiceId'      => $this->voice($options ?? config('tts.services.polly.voice_id')),
+                'OutputFormat' => $this->format($options ?? config('tts.output_format')),
                 'TextType'     => 'ssml',
                 'Text'         => '<speak>' . $text . '</speak>',
             ]);
