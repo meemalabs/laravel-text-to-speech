@@ -35,6 +35,9 @@ $path = TextToSpeech::disk('s3')
     ->saveTo('output.mp3')
     ->convert('Store me to S3.');
 
+// Converting website articles and blogs into audio file.
+$path = TextToSpeech::source('website')
+    ->convert('https://medium.com/cloud-academy-inc/an-introduction-to-aws-polly-s3-and-php-479490bffcbd');
 ```
 
 ## Installation
