@@ -51,15 +51,13 @@ class PollyConverter implements Converter
     {
         $text = $this->getTextFromSource($data);
 
-        if ($this->isTextAboveLimit($text))
-        {
+        if ($this->isTextAboveLimit($text)) {
             $text = $this->getChunkText($text);
         }
 
         $result = $this->synthesizeSpeech($text, $options);
 
-        if ($result instanceof Result)
-        {
+        if ($result instanceof Result) {
             // Store audio file to disk
             return $this->store(
                 $this->getTextFromSource($data),
@@ -71,7 +69,6 @@ class PollyConverter implements Converter
             $this->getTextFromSource($data),
             $this->mergeOutputs($result)
         );
-
     }
 
     /**
@@ -83,20 +80,18 @@ class PollyConverter implements Converter
      */
     protected function synthesizeSpeech($text, array $options = null)
     {
-        if (is_string($text))
-        {
+        if (is_string($text)) {
             return $this->client->synthesizeSpeech([
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
                 'TextType'     => 'ssml',
-                'Text'         => '<speak>' . $text . '</speak>',
+                'Text'         => '<speak>'.$text.'</speak>',
             ]);
         }
 
         $results = [];
 
-        foreach ($text as $item)
-        {
+        foreach ($text as $item) {
             $result = $this->client->synthesizeSpeech([
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
@@ -110,15 +105,14 @@ class PollyConverter implements Converter
     }
 
     /**
-     * Merges the output from amazon polly
+     * Merges the output from amazon polly.
      *
      * @return mixed
      */
     protected function mergeOutputs(array $results)
     {
         $mergedResult = null;
-        foreach ($results as $result)
-        {
+        foreach ($results as $result) {
             $mergedResult .= $this->getResultContent($result);
         }
 
@@ -126,10 +120,10 @@ class PollyConverter implements Converter
     }
 
     /**
-     * Checks the length of the text if more than 3000
+     * Checks the length of the text if more than 3000.
      *
      * @param string $text
-     * @return boolean
+     * @return bool
      */
     protected function isTextAboveLimit(string $text)
     {
@@ -137,7 +131,7 @@ class PollyConverter implements Converter
     }
 
     /**
-     * Chunk the given text into array
+     * Chunk the given text into array.
      *
      * @param string $text
      * @param int $size
@@ -145,7 +139,7 @@ class PollyConverter implements Converter
      */
     protected function getChunkText(string $text, int $size = 2000)
     {
-        return explode( "\n", wordwrap($text, $size));
+        return explode("\n", wordwrap($text, $size));
     }
 
     /**
