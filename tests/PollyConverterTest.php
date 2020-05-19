@@ -27,7 +27,7 @@ class PollyConverterTest extends TextToSpeechTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockResult = $this->getMockBuilder(\GuzzleHttp\Psr7\Stream::class)
+        $mockResult = $this->getMockBuilder(\Aws\Result::class)
             ->setMethods(['get', 'getContents'])
             ->disableOriginalConstructor()
             ->getMock();
