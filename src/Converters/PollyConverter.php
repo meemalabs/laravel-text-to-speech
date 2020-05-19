@@ -86,8 +86,8 @@ class PollyConverter implements Converter
         if (is_string($text))
         {
             return $this->client->synthesizeSpeech([
-                'VoiceId'      => $this->voice($options ?? config('tts.services.polly.voice_id')),
-                'OutputFormat' => $this->format($options ?? config('tts.output_format')),
+                'VoiceId'      => $this->voice($options),
+                'OutputFormat' => $this->format($options),
                 'TextType'     => 'ssml',
                 'Text'         => '<speak>' . $text . '</speak>',
             ]);
