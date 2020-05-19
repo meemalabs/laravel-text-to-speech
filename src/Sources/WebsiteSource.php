@@ -64,7 +64,7 @@ class WebsiteSource implements SourceContract
             );
             foreach ($dit as $node) {
                 if ($node->nodeName === 'p') {
-                    $text .= $node->textContent . ' ';
+                    $text .= $node->textContent.' ';
                 }
             }
         }
