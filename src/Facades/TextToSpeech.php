@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Cion\TextToSpeech\Contracts\Converter saveTo(string $path)
  * @method static \Cion\TextToSpeech\Contracts\Converter disk(string $disk)
  * @method static \Cion\TextToSpeech\Contracts\Converter source(string $source)
+ * @method static \Cion\TextToSpeech\Contracts\Converter language(string $language)
  */
 class TextToSpeech extends Facade
 {
