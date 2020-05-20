@@ -38,7 +38,6 @@ $path = TextToSpeech::disk('s3')
 // Converting website articles and blogs into audio file.
 $path = TextToSpeech::source('website')
     ->convert('https://medium.com/cloud-academy-inc/an-introduction-to-aws-polly-s3-and-php-479490bffcbd');
-
     
 /** 
  * Change the language to be used in converting.
@@ -50,6 +49,10 @@ $path = TextToSpeech::source('website')
 $options = ['voice' => 'Takumi'];
 $path = TextToSpeech::language('ja-JP')
     ->convert('これはテストです', $options);
+
+// Using SSML text type in convert() method.
+$path = TextToSpeech::ssml()
+    ->convert('<speak>Hi There <break /> This is SSML syntax</speak');
 ```
 
 ## Installation
