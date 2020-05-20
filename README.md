@@ -38,6 +38,18 @@ $path = TextToSpeech::disk('s3')
 // Converting website articles and blogs into audio file.
 $path = TextToSpeech::source('website')
     ->convert('https://medium.com/cloud-academy-inc/an-introduction-to-aws-polly-s3-and-php-479490bffcbd');
+
+    
+/** 
+ * Change the language to be used in converting.
+ * Note: Every language has a specific voice_id. 
+ * For example in ja-JP language we need to use either Mizuki or Takumi. 
+ * 
+ * We can pass an option array in convert to change the voice_id to be used
+ **/
+$options = ['voice' => 'Takumi'];
+$path = TextToSpeech::language('ja-JP')
+    ->convert('これはテストです', $options);
 ```
 
 ## Installation
@@ -58,6 +70,7 @@ Add these configuration in your `.env` file.
 TTS_DRIVER=polly
 TTS_DISK=local
 TTS_OUTPUT_FORMAT=mp3
+TTS_LANGUAGE=en-US
 
 AWS_VOICE_ID=Amy
 AWS_ACCESS_KEY_ID=xxxxxxx
@@ -87,7 +100,19 @@ return [
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
+    /**
+     * The default language to be used
+     * 
+     * You can use either of these.
+     * 
+     * arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS, en-IN, en-US, 
+     * es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN, ko-KR, nb-NO, 
+     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     */
+    'language' => env('TTS_LANGUAGE', 'en-US'),
+
     'audio' => [
+
         /**
          * Default path to store the output file.
          */
@@ -146,6 +171,7 @@ return [
     ],
 
 ];
+
 ```
 
 ### Testing
