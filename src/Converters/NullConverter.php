@@ -3,12 +3,13 @@
 namespace Cion\TextToSpeech\Converters;
 
 use Cion\TextToSpeech\Contracts\Converter;
+use Cion\TextToSpeech\Traits\HasLanguage;
 use Cion\TextToSpeech\Traits\Sourceable;
 use Cion\TextToSpeech\Traits\Storable;
 
 class NullConverter implements Converter
 {
-    use Storable, Sourceable;
+    use Storable, Sourceable, HasLanguage;
 
     /**
      * Converts the text to speech.

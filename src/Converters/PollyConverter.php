@@ -5,13 +5,14 @@ namespace Cion\TextToSpeech\Converters;
 use Aws\Polly\PollyClient;
 use Aws\Result;
 use Cion\TextToSpeech\Contracts\Converter;
+use Cion\TextToSpeech\Traits\HasLanguage;
 use Cion\TextToSpeech\Traits\Sourceable;
 use Cion\TextToSpeech\Traits\Storable;
 use Illuminate\Support\Arr;
 
 class PollyConverter implements Converter
 {
-    use Storable, Sourceable;
+    use Storable, Sourceable, HasLanguage;
 
     /**
      * Client instance of Polly.
@@ -82,6 +83,7 @@ class PollyConverter implements Converter
     {
         if (is_string($text)) {
             return $this->client->synthesizeSpeech([
+                'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
                 'TextType'     => 'ssml',
@@ -93,6 +95,7 @@ class PollyConverter implements Converter
 
         foreach ($text as $item) {
             $result = $this->client->synthesizeSpeech([
+                'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
                 'Text'         => $item,
@@ -153,6 +156,16 @@ class PollyConverter implements Converter
         $default = config('tts.services.polly.voice_id', 'Amy');
 
         return Arr::get($options, 'voice', $default);
+    }
+
+    /**
+     * Get the language
+     *
+     * @return string
+     */
+    protected function getLanguage()
+    {
+        return $this->language ?? config('tts.language', 'en-US');
     }
 
     /**

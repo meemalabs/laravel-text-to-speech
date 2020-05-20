@@ -36,4 +36,12 @@ interface Converter
      * @return $this
      */
     public function source(string $source);
+
+    /**
+     * Sets the language to be used.
+     *
+     * @param string $language
+     * @return $this
+     */
+    public function language(string $language);
 }
