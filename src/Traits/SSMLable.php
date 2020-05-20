@@ -10,7 +10,7 @@ trait SSMLable
     protected $textType = 'text';
 
     /**
-     * Sets the text type to ssml default is text
+     * Sets the text type to ssml default is text.
      *
      * @return $this
      */
