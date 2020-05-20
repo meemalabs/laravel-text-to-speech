@@ -46,7 +46,7 @@ interface Converter
     public function language(string $language);
 
     /**
-     * Sets the text type to ssml default is text
+     * Sets the text type to ssml default is text.
      *
      * @return $this
      */
