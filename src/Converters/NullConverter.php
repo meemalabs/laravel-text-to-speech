@@ -5,11 +5,12 @@ namespace Cion\TextToSpeech\Converters;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\HasLanguage;
 use Cion\TextToSpeech\Traits\Sourceable;
+use Cion\TextToSpeech\Traits\SSMLable;
 use Cion\TextToSpeech\Traits\Storable;
 
 class NullConverter implements Converter
 {
-    use Storable, Sourceable, HasLanguage;
+    use Storable, Sourceable, HasLanguage, SSMLable;
 
     /**
      * Converts the text to speech.

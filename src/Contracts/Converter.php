@@ -44,4 +44,11 @@ interface Converter
      * @return $this
      */
     public function language(string $language);
+
+    /**
+     * Sets the text type to ssml default is text
+     *
+     * @return $this
+     */
+    public function ssml();
 }

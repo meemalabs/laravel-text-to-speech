@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Cion\TextToSpeech\Contracts\Converter disk(string $disk)
  * @method static \Cion\TextToSpeech\Contracts\Converter source(string $source)
  * @method static \Cion\TextToSpeech\Contracts\Converter language(string $language)
+ * @method static \Cion\TextToSpeech\Contracts\Converter ssml()
  */
 class TextToSpeech extends Facade
 {

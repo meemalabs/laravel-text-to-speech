@@ -7,12 +7,13 @@ use Aws\Result;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\HasLanguage;
 use Cion\TextToSpeech\Traits\Sourceable;
+use Cion\TextToSpeech\Traits\SSMLable;
 use Cion\TextToSpeech\Traits\Storable;
 use Illuminate\Support\Arr;
 
 class PollyConverter implements Converter
 {
-    use Storable, Sourceable, HasLanguage;
+    use Storable, Sourceable, HasLanguage, SSMLable;
 
     /**
      * Client instance of Polly.
@@ -86,19 +87,20 @@ class PollyConverter implements Converter
                 'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
-                'TextType'     => 'ssml',
-                'Text'         => '<speak>'.$text.'</speak>',
+                'TextType'     => $this->textType,
+                'Text'         => $text,
             ]);
         }
 
         $results = [];
 
-        foreach ($text as $item) {
+        foreach ($text as $textItem) {
             $result = $this->client->synthesizeSpeech([
                 'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
-                'Text'         => $item,
+                'TextType'     => $this->textType,
+                'Text'         => $textItem,
             ]);
 
             array_push($results, $result);
