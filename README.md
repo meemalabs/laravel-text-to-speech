@@ -74,6 +74,7 @@ TTS_DRIVER=polly
 TTS_DISK=local
 TTS_OUTPUT_FORMAT=mp3
 TTS_LANGUAGE=en-US
+TTS_TEXT_TYPE=text
 
 AWS_VOICE_ID=Amy
 AWS_ACCESS_KEY_ID=xxxxxxx
@@ -104,18 +105,17 @@ return [
     'driver' => env('TTS_DRIVER', 'polly'),
 
     /**
-     * The default language to be used
-     * 
+     * The default language to be used.
+     *
      * You can use either of these.
-     * 
-     * arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS, en-IN, en-US, 
-     * es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN, ko-KR, nb-NO, 
+     *
+     * arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS, en-IN, en-US,
+     * es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN, ko-KR, nb-NO,
      * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      */
     'language' => env('TTS_LANGUAGE', 'en-US'),
 
     'audio' => [
-
         /**
          * Default path to store the output file.
          */
@@ -131,6 +131,14 @@ return [
      * The default source that will be used.
      */
     'default_source' => 'text',
+
+    /**
+     * The default text type to be used.
+     * 
+     * You can use either text or ssml.
+     * 
+     */
+    'text_type' => env('TTS_TEXT_TYPE', 'text'),
 
     /**
      * The source that can be used.
@@ -174,6 +182,7 @@ return [
     ],
 
 ];
+
 
 ```
 

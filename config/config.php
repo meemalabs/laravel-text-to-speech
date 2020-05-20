@@ -49,6 +49,13 @@ return [
     'default_source' => 'text',
 
     /**
+     * The default text type to be used.
+     *
+     * You can use either text or ssml.
+     */
+    'text_type' => env('TTS_TEXT_TYPE', 'text'),
+
+    /**
      * The source that can be used.
      * You can create your own source by implementing the Source interface.
      *

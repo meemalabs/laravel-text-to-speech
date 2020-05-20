@@ -87,7 +87,7 @@ class PollyConverter implements Converter
                 'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
-                'TextType'     => $this->textType,
+                'TextType'     => $this->textType(),
                 'Text'         => $text,
             ]);
         }
@@ -99,7 +99,7 @@ class PollyConverter implements Converter
                 'LanguageCode' => $this->getLanguage(),
                 'VoiceId'      => $this->voice($options),
                 'OutputFormat' => $this->format($options),
-                'TextType'     => $this->textType,
+                'TextType'     => $this->textType(),
                 'Text'         => $textItem,
             ]);
 
@@ -158,6 +158,18 @@ class PollyConverter implements Converter
         $default = config('tts.services.polly.voice_id', 'Amy');
 
         return Arr::get($options, 'voice', $default);
+    }
+
+    /**
+     * Get the text type.
+     *
+     * @return void
+     */
+    protected function textType()
+    {
+        $default = config('tts.text_type', 'text');
+
+        return $this->textType ?? $default;
     }
 
     /**
