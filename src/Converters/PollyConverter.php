@@ -159,7 +159,7 @@ class PollyConverter implements Converter
     }
 
     /**
-     * Get the language
+     * Get the language.
      *
      * @return string
      */
