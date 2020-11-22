@@ -70,7 +70,7 @@ return [
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
-             * You may use any of the following:
+             * You may use any of the following:.
              *
              * Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla, Carmen, Celine,
              * Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
