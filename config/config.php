@@ -9,21 +9,21 @@ return [
     'disk' => env('TTS_DISK', 'local'),
 
     /**
-     * The default audio format of the converted text to speech audio file.
+     * The default audio format of the converted text-to-speech audio file.
      * Currently, mp3 is the only supported format.
      */
     'output_format' => env('TTS_OUTPUT_FORMAT', 'mp3'),
 
     /**
-     * The driver to be used for converting Text to Speech
-     * You can choose polly, or null as of the moment.
+     * The driver to be used for converting text-to-speech
+     * You can choose polly, or null as of now.
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
     /**
      * The default language to be used.
      *
-     * You can use either of these.
+     * You may use any of the following:
      *
      * arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS, en-IN, en-US,
      * es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN, ko-KR, nb-NO,
@@ -50,7 +50,6 @@ return [
 
     /**
      * The default text type to be used.
-     *
      * You can use either text or ssml.
      */
     'text_type' => env('TTS_TEXT_TYPE', 'text'),
@@ -71,7 +70,7 @@ return [
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
-             * You can use either of these.
+             * You may use any of the following:
              *
              * Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla, Carmen, Celine,
              * Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,

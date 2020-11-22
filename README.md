@@ -19,38 +19,38 @@ Currently, the only supported driver is Amazon Polly. We are exploring the optio
 ``` php
 use Cion\TextToSpeech\Facades\TextToSpeech;
 
-// Converting text from a text file.
+// convert text from a text file
 $path = TextToSpeech::source('path')
     ->convert('/path/to/text/file');
 
-// You could pass the string directly to convert in the convert() method.
+// you may also pass the string directly to convert() method
 $path = TextToSpeech::convert('Convert this string.');
 
-// Configure where to save the converted output. In this case it will save the output file in the storage/output.mp3
+// configure where to save the converted output. In this case, it would save the output file in the storage/output.mp3
 $path = TextToSpeech::saveTo('output.mp3')
     ->convert('Hi this is a test.');
 
-// Storing directly the converted output to S3.
+// store the converted output directly to S3
 $path = TextToSpeech::disk('s3')
     ->saveTo('output.mp3')
     ->convert('Store me to S3.');
 
-// Converting website articles and blogs into audio file.
+// convert website articles & blog posts to an audio file
 $path = TextToSpeech::source('website')
     ->convert('https://medium.com/cloud-academy-inc/an-introduction-to-aws-polly-s3-and-php-479490bffcbd');
-    
-/** 
- * Change the language to be used in converting.
- * Note: Every language has a specific voice_id. 
- * For example in ja-JP language we need to use either Mizuki or Takumi. 
- * 
+
+/**
+ * Change the language to be used for the conversion.
+ * Note: every language has a specific voice_id.
+ * For example in ja-JP language we need to use either Mizuki or Takumi.
+ *
  * We can pass an option array in convert to change the voice_id to be used
  **/
 $options = ['voice' => 'Takumi'];
 $path = TextToSpeech::language('ja-JP')
     ->convert('これはテストです', $options);
 
-// Using SSML text type in convert() method.
+// use the SSML text type in the convert() method.
 $path = TextToSpeech::ssml()
     ->convert('<speak>Hi There <break /> This is SSML syntax</speak');
 ```
@@ -62,13 +62,17 @@ You can install the package via composer:
 ```bash
 composer require cion/laravel-text-to-speech
 ```
+
 The package will automatically register itself.
 
 You can optionally publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Cion\TextToSpeech\Providers\TextToSpeechServiceProvider" --tag="config"
 ```
-Add these configuration in your `.env` file.
+
+Next, please add these keys to your `.env` file:
+
 ```env
 TTS_DRIVER=polly
 TTS_DISK=local
@@ -82,7 +86,8 @@ AWS_SECRET_ACCESS_KEY=xxxxxxx
 AWS_DEFAULT_REGION=us-east-1
 ```
 
-This is the contents of the published config file:
+The following is the content of the published config file:
+
 ```php
 return [
 
@@ -93,21 +98,21 @@ return [
     'disk' => env('TTS_DISK', 'local'),
 
     /**
-     * The default audio format of the converted text to speech audio file.
+     * The default audio format of the converted text-to-speech audio file.
      * Currently, mp3 is the only supported format.
      */
     'output_format' => env('TTS_OUTPUT_FORMAT', 'mp3'),
 
     /**
-     * The driver to be used for converting Text to Speech
-     * You can choose polly, or null as of the moment.
+     * The driver to be used for converting text-to-speech
+     * You can choose polly, or null as of now.
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
     /**
      * The default language to be used.
      *
-     * You can use either of these.
+     * You may use any of the following:
      *
      * arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS, en-IN, en-US,
      * es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN, ko-KR, nb-NO,
@@ -134,9 +139,7 @@ return [
 
     /**
      * The default text type to be used.
-     * 
      * You can use either text or ssml.
-     * 
      */
     'text_type' => env('TTS_TEXT_TYPE', 'text'),
 
@@ -156,7 +159,7 @@ return [
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
-             * You can use either of these.
+             * You may use any of the following:
              *
              * Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla, Carmen, Celine,
              * Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
@@ -182,8 +185,6 @@ return [
     ],
 
 ];
-
-
 ```
 
 ### Testing
