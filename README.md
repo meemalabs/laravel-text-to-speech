@@ -208,7 +208,7 @@ If you discover any security related issues, please email chris@cion.agency inst
 ## Credits
 
 - [Rigel Kent Carbonel](https://github.com/luigel)
-- [Rigel Kent Carbonel](https://github.com/luigel)
+- [Chris Breuer](https://github.com/Chris1904)
 - [Harlequin Doyon](https://github.com/harlekoy)
 - [Folks at Meema Labs & CION](https://github.com/meemalabs)
 - [All Contributors](../../contributors)
