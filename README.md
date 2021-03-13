@@ -1,4 +1,4 @@
-# Text to Speech Package for Laravel
+# Text-To-Speech Package for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/cion/laravel-text-to-speech.svg?style=flat-square)](https://packagist.org/packages/cion/laravel-text-to-speech)
 [![Test](https://github.com/ci-on/laravel-text-to-speech/workflows/Test/badge.svg?branch=master)](https://github.com/ci-on/laravel-text-to-speech/actions)
@@ -10,9 +10,9 @@
 [![Build Status](wip)](ghactions)
  -->
 
-This is a Text to Speech package for Laravel. Its primary intention is to use a shared API to easily convert text to speech.
+This is a Text-To-Speech package for Laravel. Its primary intention is to use a shared API to easily convert text to speech.
 
-Currently, the only supported driver is Amazon Polly. We are exploring the option to soon support Google WaveNet.
+Currently, the only supported driver is Amazon Polly. We are exploring the option to soon support Google WaveNet. Feel free to start a discussion on any possible driver.
 
 ## Usage
 
@@ -208,8 +208,9 @@ If you discover any security related issues, please email chris@cion.agency inst
 ## Credits
 
 - [Rigel Kent Carbonel](https://github.com/luigel)
+- [Rigel Kent Carbonel](https://github.com/luigel)
 - [Harlequin Doyon](https://github.com/harlekoy)
-- [Folks at CION](https://github.com/ci-on)
+- [Folks at Meema Labs & CION](https://github.com/meemalabs)
 - [All Contributors](../../contributors)
 
 ## License
