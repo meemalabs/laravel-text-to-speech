@@ -2,14 +2,15 @@
     "name": "cion/laravel-text-to-speech",
     "description": "This package creates a shared API to easily use Text to Speech functionalities amongst different TTS providers.",
     "keywords": [
-        "cion",
         "text-to-speech",
         "laravel",
         "polly",
         "wavenet",
-        "aws"
+        "aws",
+        "cion",
+        "meemalabs"
     ],
-    "homepage": "https://github.com/ci-on/laravel-text-to-speech",
+    "homepage": "https://github.com/meemalabs/laravel-text-to-speech",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -24,13 +25,13 @@
         }
     ],
     "require": {
-        "php": "^7.0|^7.2|^7.3|^7.4",
+        "php": "^7.3|^7.4|^8.0",
         "guzzlehttp/guzzle": "^6.0|^7.0",
         "illuminate/support": "5.*|^6.0|^7.0|^8.0"
     },
     "require-dev": {
         "aws/aws-sdk-php": "^3.0",
-        "orchestra/testbench": "^3.5.0|^3.6.0|^4.0|^5.0|^6.0",
+        "orchestra/testbench": "^4.0|^5.0|^6.0",
         "phpunit/phpunit": "^5.0|^6.0|^8.0|^9.3"
     },
     "autoload": {

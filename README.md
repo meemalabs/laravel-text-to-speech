@@ -217,4 +217,4 @@ If you discover any security related issues, please email chris@cion.agency inst
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-Made with ❤️ by CION Agency
+Made with ❤️ by CION Agency & Meema Labs
