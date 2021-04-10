@@ -18,7 +18,7 @@ class PollyConverter implements Converter
     /**
      * Client instance of Polly.
      *
-     * @var \Aws\Polly\PollyClient
+     * @var PollyClient
      */
     protected $client;
 
@@ -163,11 +163,11 @@ class PollyConverter implements Converter
     /**
      * Get the text type.
      *
-     * @return void
+     * @return string
      */
     protected function textType()
     {
-        $default = config('tts.text_type', 'text');
+        $default = (string) config('tts.text_type', 'text');
 
         return $this->textType ?? $default;
     }
@@ -185,7 +185,7 @@ class PollyConverter implements Converter
     /**
      * Get the audio format.
      *
-     * @param  array $options
+     * @param array $options
      * @return string
      */
     protected function format($options)
@@ -198,7 +198,7 @@ class PollyConverter implements Converter
     /**
      * Get the content of the result from AWS Polly.
      *
-     * @param mixed $result
+     * @param Result $result
      * @return mixed
      */
     protected function getResultContent($result)
