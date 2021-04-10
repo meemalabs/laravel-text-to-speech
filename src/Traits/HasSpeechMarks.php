@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Cion\TextToSpeech\Traits;
-
 
 trait HasSpeechMarks
 {
