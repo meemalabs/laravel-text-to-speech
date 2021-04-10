@@ -238,7 +238,7 @@ class PollyConverter implements Converter
         array_pop($jsons);
 
         return collect($jsons)->map(function ($json) {
-           return json_decode($json, true);
+            return json_decode($json, true);
         })->toArray();
     }
 }
