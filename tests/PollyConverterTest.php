@@ -97,4 +97,14 @@ class PollyConverterTest extends TextToSpeechTestCase
 
         Storage::assertExists($path);
     }
+
+    /** @test */
+    public function it_should_return_an_array_when_speech_marks_are_set()
+    {
+        $converter = new PollyConverter($this->client);
+
+        $result = $converter->speechMarks(['sentence'])->convert('test');
+
+        $this->assertIsArray($result);
+    }
 }

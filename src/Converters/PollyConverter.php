@@ -6,6 +6,7 @@ use Aws\Polly\PollyClient;
 use Aws\Result;
 use Cion\TextToSpeech\Contracts\Converter;
 use Cion\TextToSpeech\Traits\HasLanguage;
+use Cion\TextToSpeech\Traits\HasSpeechMarks;
 use Cion\TextToSpeech\Traits\Sourceable;
 use Cion\TextToSpeech\Traits\SSMLable;
 use Cion\TextToSpeech\Traits\Storable;
@@ -13,7 +14,7 @@ use Illuminate\Support\Arr;
 
 class PollyConverter implements Converter
 {
-    use Storable, Sourceable, HasLanguage, SSMLable;
+    use Storable, Sourceable, HasLanguage, SSMLable, HasSpeechMarks;
 
     /**
      * Client instance of Polly.
@@ -47,7 +48,7 @@ class PollyConverter implements Converter
      *
      * @param string $data
      * @param array $options
-     * @return string
+     * @return string|array
      */
     public function convert(string $data, array $options = null)
     {
@@ -58,6 +59,10 @@ class PollyConverter implements Converter
         }
 
         $result = $this->synthesizeSpeech($text, $options);
+
+        if ($this->hasSpeechMarks()) {
+            return $this->formatToArray($this->getResultContent($result));
+        }
 
         if ($result instanceof Result) {
             // Store audio file to disk
@@ -82,26 +87,26 @@ class PollyConverter implements Converter
      */
     protected function synthesizeSpeech($text, array $options = null)
     {
+        $arguments = [
+            'LanguageCode'    => $this->getLanguage(),
+            'VoiceId'         => $this->voice($options),
+            'OutputFormat'    => $this->format($options),
+            'TextType'        => $this->textType(),
+            'SpeechMarkTypes' => $this->speechMarks,
+        ];
+
         if (is_string($text)) {
-            return $this->client->synthesizeSpeech([
-                'LanguageCode' => $this->getLanguage(),
-                'VoiceId'      => $this->voice($options),
-                'OutputFormat' => $this->format($options),
-                'TextType'     => $this->textType(),
-                'Text'         => $text,
-            ]);
+            return $this->client->synthesizeSpeech(array_merge($arguments, [
+                'Text' => $text,
+            ]));
         }
 
         $results = [];
 
         foreach ($text as $textItem) {
-            $result = $this->client->synthesizeSpeech([
-                'LanguageCode' => $this->getLanguage(),
-                'VoiceId'      => $this->voice($options),
-                'OutputFormat' => $this->format($options),
-                'TextType'     => $this->textType(),
-                'Text'         => $textItem,
-            ]);
+            $result = $this->client->synthesizeSpeech(array_merge($arguments, [
+                'Text' => $textItem,
+            ]));
 
             array_push($results, $result);
         }
@@ -190,6 +195,10 @@ class PollyConverter implements Converter
      */
     protected function format($options)
     {
+        if ($this->hasSpeechMarks()) {
+            return 'json';
+        }
+
         $default = config('tts.output_format', 'mp3');
 
         return Arr::get($options, 'format', $default);
@@ -204,5 +213,32 @@ class PollyConverter implements Converter
     protected function getResultContent($result)
     {
         return $result->get('AudioStream')->getContents();
+    }
+
+    /**
+     * Determines if speech marks are set.
+     *
+     * @return bool
+     */
+    protected function hasSpeechMarks()
+    {
+        return ! empty($this->speechMarks);
+    }
+
+    /**
+     * Format the given json string into an array.
+     *
+     * @param string $json
+     * @return array
+     */
+    protected function formatToArray($json)
+    {
+        $jsons = explode(PHP_EOL, $json);
+
+        array_pop($jsons);
+
+        return collect($jsons)->map(function ($json) {
+           return json_decode($json, true);
+        })->toArray();
     }
 }
