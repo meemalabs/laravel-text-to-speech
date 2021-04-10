@@ -87,12 +87,14 @@ class PollyConverter implements Converter
      */
     protected function synthesizeSpeech($text, array $options = null)
     {
+        $speechMarks = $this->getSpeechMarks();
+
         $arguments = [
             'LanguageCode'    => $this->getLanguage(),
             'VoiceId'         => $this->voice($options),
             'OutputFormat'    => $this->format($options),
             'TextType'        => $this->textType(),
-            'SpeechMarkTypes' => $this->speechMarks,
+            'SpeechMarkTypes' => $speechMarks,
         ];
 
         if (is_string($text)) {
@@ -205,6 +207,18 @@ class PollyConverter implements Converter
     }
 
     /**
+     * Get the speech marks.
+     *
+     * @return array
+     */
+    protected function getSpeechMarks()
+    {
+        $default = config('tts.services.polly.speech_marks', []);
+
+        return ! empty($this->speechMarks) ? $this->speechMarks : $default;
+    }
+
+    /**
      * Get the content of the result from AWS Polly.
      *
      * @param Result $result
@@ -222,7 +236,7 @@ class PollyConverter implements Converter
      */
     protected function hasSpeechMarks()
     {
-        return ! empty($this->speechMarks);
+        return ! empty($this->getSpeechMarks());
     }
 
     /**
