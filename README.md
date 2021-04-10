@@ -163,7 +163,7 @@ return [
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
-             * You may use any of the following:
+             * You may use any of the following:.
              *
              * Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla, Carmen, Celine,
              * Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa, Filiz,
@@ -174,6 +174,14 @@ return [
              * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu.
              */
             'voice_id' => env('AWS_VOICE_ID', 'Amy'),
+
+            /**
+             * You can request any or all of the speech mark types, but leave it empty if you don't use speech marks.
+             * You may add any of the following:.
+             *
+             * sentence, word, viseme, ssml
+             */
+            'speech_marks' => [],
 
             /**
              * IAM Credentials from AWS.
