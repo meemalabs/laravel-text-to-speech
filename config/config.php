@@ -83,6 +83,14 @@ return [
             'voice_id' => env('AWS_VOICE_ID', 'Amy'),
 
             /**
+             * You can request any or all of the speech mark types, but leave it empty if you don't use speech marks.
+             * You may add any of the following:.
+             *
+             * sentence, word, viseme, ssml
+             */
+            'speech_marks' => [],
+
+            /**
              * IAM Credentials from AWS.
              */
             'credentials' => [
