@@ -94,6 +94,7 @@ class PollyConverter implements Converter
             'VoiceId'         => $this->voice($options),
             'OutputFormat'    => $this->format($options),
             'TextType'        => $this->textType(),
+            'Engine'          => $this->engine($options),
             'SpeechMarkTypes' => $speechMarks,
         ];
 
@@ -204,6 +205,17 @@ class PollyConverter implements Converter
         $default = config('tts.output_format', 'mp3');
 
         return Arr::get($options, 'format', $default);
+    }
+
+    /**
+     * Get the engine.
+     *
+     * @param array $options
+     * @return string
+     */
+    protected function engine($options)
+    {
+        return Arr::get($options, 'engine', 'standard');
     }
 
     /**
