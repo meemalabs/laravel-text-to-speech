@@ -53,7 +53,7 @@ $path = TextToSpeech::language('ja-JP')
 // use the SSML text type in the convert() method.
 $path = TextToSpeech::ssml()
     ->convert('<speak>Hi There <break /> This is SSML syntax</speak');
-    
+
 // using speech marks.
 $output = TextToSpeech::speechMarks(['sentence', 'word', 'viseme', 'ssml'])
     ->convert('This is a test'); // This will return an array.
@@ -211,11 +211,11 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-### Security
+## Security Vulnerabilities
 
-If you discover any security related issues, please email chris@cion.agency instead of using the issue tracker.
+Please review [our security policy](https://github.com/laravel/forge-cli/security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
@@ -227,6 +227,6 @@ If you discover any security related issues, please email chris@cion.agency inst
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Meema CLI is open-sourced software licensed under the [MIT license](LICENSE.md).
 
 Made with ❤️ by CION Agency & Meema Labs
