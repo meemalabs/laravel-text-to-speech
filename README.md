@@ -217,7 +217,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 For help, discussion about best practices, or any other conversation that would benefit from being searchable:
 
-[Flysystem Meema on GitHub](https://github.com/meemalabs/laravel-text-to-speech/discussions)
+[Text-to-Speech on GitHub](https://github.com/meemalabs/laravel-text-to-speech/discussions)
 
 For casual chit-chat with others using this package:
 
