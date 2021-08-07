@@ -14,7 +14,7 @@ This is a Text-To-Speech package for Laravel. Its primary intention is to use a 
 
 Currently, the only supported driver is Amazon Polly. We are exploring the option to soon support Google WaveNet. Feel free to start a discussion on any possible driver.
 
-## Usage
+## 💡 Usage
 
 ``` php
 use Cion\TextToSpeech\Facades\TextToSpeech;
@@ -59,7 +59,7 @@ $output = TextToSpeech::speechMarks(['sentence', 'word', 'viseme', 'ssml'])
     ->convert('This is a test'); // This will return an array.
 ```
 
-## Installation
+## 🐙 Installation
 
 You can install the package via composer:
 
@@ -199,34 +199,44 @@ return [
 ];
 ```
 
-### Testing
+## 🧪 Testing
 
 ``` bash
 composer test
 ```
 
-### Changelog
+## 📈 Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see our [releases](https://github.com/meemalabs/laravel-text-to-speech/releases) page for more information on what has changed recently.
 
-## Contributing
+## 💪🏼 Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
+## 🏝 Community
 
-Please review [our security policy](https://github.com/laravel/forge-cli/security/policy) on how to report security vulnerabilities.
+For help, discussion about best practices, or any other conversation that would benefit from being searchable:
 
-## Credits
+[Flysystem Meema on GitHub](https://github.com/meemalabs/laravel-text-to-speech/discussions)
 
-- [Rigel Kent Carbonel](https://github.com/luigel)
+For casual chit-chat with others using this package:
+
+[Join the Meema Discord Server](https://discord.meema.io)
+
+## 🚨 Security
+
+Please review [our security policy](https://github.com/meemalabs/laravel-text-to-speech/security/policy) on how to report security vulnerabilities.
+
+## 🙏🏼 Credits
+
 - [Chris Breuer](https://github.com/Chris1904)
+- [Rigel Kent Carbonel](https://github.com/luigel)
 - [Harlequin Doyon](https://github.com/harlekoy)
 - [Folks at Meema Labs & CION](https://github.com/meemalabs)
 - [All Contributors](../../contributors)
 
-## License
+## 📄 License
 
-Meema CLI is open-sourced software licensed under the [MIT license](LICENSE.md).
+The MIT License (MIT). Please see [LICENSE](LICENSE.md) for more information.
 
-Made with ❤️ by CION Agency & Meema Labs
+Made with ❤️ by Meema, Inc.
