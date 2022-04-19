@@ -12,7 +12,7 @@ trait HasLanguage
     /**
      * Sets the language to be used.
      *
-     * @param string $language
+     * @param  string  $language
      * @return $this
      */
     public function language(string $language)
