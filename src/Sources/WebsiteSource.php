@@ -12,7 +12,7 @@ class WebsiteSource implements SourceContract
     /**
      * Handles in getting the text from source.
      *
-     * @param  string $data
+     * @param  string  $data
      * @return string
      */
     public function handle(string $data): string
@@ -45,7 +45,7 @@ class WebsiteSource implements SourceContract
     /**
      * Get text from the articles DOM Node List.
      *
-     * @param DOMNodeList $articles
+     * @param  DOMNodeList  $articles
      * @return string
      */
     protected function getTextFromArticle(DOMNodeList $articles): string

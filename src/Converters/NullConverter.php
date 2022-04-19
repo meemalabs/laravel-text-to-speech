@@ -15,8 +15,8 @@ class NullConverter implements Converter
     /**
      * Converts the text to speech.
      *
-     * @param mixed $data
-     * @param array $options
+     * @param  mixed  $data
+     * @param  array  $options
      * @return void
      */
     public function convert($data, array $options = null)
