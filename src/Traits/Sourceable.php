@@ -16,7 +16,7 @@ trait Sourceable
     /**
      * Sets the source.
      *
-     * @param string $source
+     * @param  string  $source
      * @return $this
      */
     public function source(string $source)
@@ -28,7 +28,8 @@ trait Sourceable
 
     /**
      * Get text from source.
-     * @param string $data
+     *
+     * @param  string  $data
      * @return string
      */
     protected function getTextFromSource(string $data): string
