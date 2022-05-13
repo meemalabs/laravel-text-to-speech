@@ -7,8 +7,8 @@ interface Converter
     /**
      * Converts text to speech.
      *
-     * @param string $text
-     * @param array $options
+     * @param  string  $text
+     * @param  array|null  $options
      * @return mixed
      */
     public function convert(string $text, array $options = null);
@@ -16,7 +16,7 @@ interface Converter
     /**
      * Set where to store the converted file.
      *
-     * @param string $disk
+     * @param  string  $disk
      * @return $this
      */
     public function disk(string $disk);
@@ -24,7 +24,7 @@ interface Converter
     /**
      * Set path to where to save the converted file.
      *
-     * @param string $path
+     * @param  string  $path
      * @return $this
      */
     public function saveTo(string $path);
@@ -32,7 +32,7 @@ interface Converter
     /**
      * Sets the source where the text from.
      *
-     * @param string $source
+     * @param  string  $source
      * @return $this
      */
     public function source(string $source);
@@ -40,7 +40,7 @@ interface Converter
     /**
      * Sets the language to be used.
      *
-     * @param string $language
+     * @param  string  $language
      * @return $this
      */
     public function language(string $language);

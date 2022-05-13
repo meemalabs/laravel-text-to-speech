@@ -45,8 +45,8 @@ class TextToSpeechManager extends Manager
     /**
      * Sets the polly client.
      *
-     * @param array $config
-     * @param Credentials $credentials
+     * @param  array  $config
+     * @param  Credentials  $credentials
      * @return PollyClient
      */
     protected function setPollyClient(array $config, Credentials $credentials)
@@ -61,7 +61,7 @@ class TextToSpeechManager extends Manager
     /**
      * Get credentials of AWS.
      *
-     * @param array $credentials
+     * @param  array  $credentials
      * @return \Aws\Credentials\Credentials
      */
     protected function getCredentials(array $credentials)
