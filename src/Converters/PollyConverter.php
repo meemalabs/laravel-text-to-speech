@@ -47,7 +47,8 @@ class PollyConverter implements Converter
      * Converts the text to speech.
      *
      * @param string $data
-     * @param array $options
+     * @param array|null $options
+     *
      * @return string|array
      */
     public function convert(string $data, array $options = null)
@@ -82,7 +83,8 @@ class PollyConverter implements Converter
      * Request to Amazon Polly to synthesize speech.
      *
      * @param string|array $text
-     * @param array $options
+     * @param array|null $options
+     *
      * @return array|\Aws\Result
      */
     protected function synthesizeSpeech($text, array $options = null)
@@ -111,7 +113,7 @@ class PollyConverter implements Converter
                 'Text' => $textItem,
             ]));
 
-            array_push($results, $result);
+            $results[] = $result;
         }
 
         return $results;

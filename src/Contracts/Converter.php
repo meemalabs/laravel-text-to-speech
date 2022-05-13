@@ -8,7 +8,8 @@ interface Converter
      * Converts text to speech.
      *
      * @param string $text
-     * @param array $options
+     * @param array|null $options
+     *
      * @return mixed
      */
     public function convert(string $text, array $options = null);

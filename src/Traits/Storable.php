@@ -63,7 +63,7 @@ trait Storable
 
         $storage = Storage::disk($this->disk ?: config('tts.disk'));
 
-        $storage->put($this->path, $resultContent);
+        $storage->put($this->path, $resultContent ?? '');
 
         return $this->path;
     }

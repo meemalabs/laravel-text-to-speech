@@ -28,7 +28,9 @@ trait Sourceable
 
     /**
      * Get text from source.
+     *
      * @param string $data
+     *
      * @return string
      */
     protected function getTextFromSource(string $data): string
