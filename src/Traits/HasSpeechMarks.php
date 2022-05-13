@@ -12,7 +12,7 @@ trait HasSpeechMarks
     /**
      * Sets the speech mark types.
      *
-     * @param array $speechMarks
+     * @param  array  $speechMarks
      * @return $this
      */
     public function speechMarks(array $speechMarks)
