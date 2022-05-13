@@ -26,7 +26,7 @@ class PollyConverter implements Converter
     /**
      * Construct converter.
      *
-     * @param PollyClient $client
+     * @param  PollyClient  $client
      */
     public function __construct(PollyClient $client)
     {
@@ -46,9 +46,8 @@ class PollyConverter implements Converter
     /**
      * Converts the text to speech.
      *
-     * @param string $data
-     * @param array|null $options
-     *
+     * @param  string  $data
+     * @param  array|null  $options
      * @return string|array
      */
     public function convert(string $data, array $options = null)
@@ -82,9 +81,8 @@ class PollyConverter implements Converter
     /**
      * Request to Amazon Polly to synthesize speech.
      *
-     * @param string|array $text
-     * @param array|null $options
-     *
+     * @param  string|array  $text
+     * @param  array|null  $options
      * @return array|\Aws\Result
      */
     protected function synthesizeSpeech($text, array $options = null)
@@ -137,7 +135,7 @@ class PollyConverter implements Converter
     /**
      * Checks the length of the text if more than 3000.
      *
-     * @param string $text
+     * @param  string  $text
      * @return bool
      */
     protected function isTextAboveLimit(string $text)
@@ -148,8 +146,8 @@ class PollyConverter implements Converter
     /**
      * Chunk the given text into array.
      *
-     * @param string $text
-     * @param int $size
+     * @param  string  $text
+     * @param  int  $size
      * @return array
      */
     protected function getChunkText(string $text, int $size = 2000)
@@ -160,7 +158,7 @@ class PollyConverter implements Converter
     /**
      * Get the text to speech voice ID.
      *
-     * @param  array $options
+     * @param  array  $options
      * @return string
      */
     protected function voice($options)
@@ -195,7 +193,7 @@ class PollyConverter implements Converter
     /**
      * Get the audio format.
      *
-     * @param array $options
+     * @param  array  $options
      * @return string
      */
     protected function format($options)
@@ -212,7 +210,7 @@ class PollyConverter implements Converter
     /**
      * Get the engine.
      *
-     * @param array $options
+     * @param  array  $options
      * @return string
      */
     protected function engine($options)
@@ -235,7 +233,7 @@ class PollyConverter implements Converter
     /**
      * Get the content of the result from AWS Polly.
      *
-     * @param Result $result
+     * @param  Result  $result
      * @return mixed
      */
     protected function getResultContent($result)
@@ -256,7 +254,7 @@ class PollyConverter implements Converter
     /**
      * Format the given json string into an array.
      *
-     * @param string $json
+     * @param  string  $json
      * @return array
      */
     protected function formatToArray($json)

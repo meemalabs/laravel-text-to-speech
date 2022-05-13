@@ -24,8 +24,7 @@ trait Storable
     /**
      * Set where to store the converted file.
      *
-     * @param string $disk
-     *
+     * @param  string  $disk
      * @return $this
      */
     public function disk(string $disk)
@@ -38,8 +37,7 @@ trait Storable
     /**
      * Set path to where to store the converted file.
      *
-     * @param string $path
-     *
+     * @param  string  $path
      * @return $this
      */
     public function saveTo(string $path)
@@ -52,9 +50,8 @@ trait Storable
     /**
      * Execute the store.
      *
-     * @param string $text
-     * @param mixed $resultContent
-     *
+     * @param  string  $text
+     * @param  mixed  $resultContent
      * @return string
      */
     protected function store($text, $resultContent)
@@ -71,9 +68,8 @@ trait Storable
     /**
      * Ensures the path not to be null if it is null it will set a default path.
      *
-     * @param string $text
-     * @param mixed $audio
-     *
+     * @param  string  $text
+     * @param  mixed  $audio
      * @return void
      */
     protected function ensurePathIsNotNull($text, $audio)
@@ -111,9 +107,8 @@ trait Storable
     /**
      * Get default filename returned in Filename Formatter.
      *
-     * @param string $text
-     * @param mixed $audio
-     *
+     * @param  string  $text
+     * @param  mixed  $audio
      * @return string
      */
     protected function getDefaultFilename($text, $audio)
