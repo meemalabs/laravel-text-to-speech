@@ -38,8 +38,8 @@ class TextToSpeechManager extends Manager
         $client = $this->setPollyClient($config, $credentials);
 
         return new PollyConverter(
-           $client
-       );
+            $client
+        );
     }
 
     /**
