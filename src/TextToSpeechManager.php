@@ -66,7 +66,7 @@ class TextToSpeechManager extends Manager
      */
     protected function getCredentials(array $credentials)
     {
-        return new Credentials($credentials['key'], $credentials['secret']);
+        return new Credentials($credentials['key'], $credentials['secret'], $credentials['token']);
     }
 
     /**
