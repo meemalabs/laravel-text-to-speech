@@ -28,7 +28,7 @@
         "php": "^7.3|^7.4|^8.0",
         "aws/aws-sdk-php": "^3.178",
         "guzzlehttp/guzzle": "^6.0|^7.0",
-        "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+        "illuminate/support": "5.*|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
         "ext-json": "*"
     },
     "require-dev": {
