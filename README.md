@@ -52,7 +52,7 @@ $path = TextToSpeech::language('ja-JP')
 
 // use the SSML text type in the convert() method.
 $path = TextToSpeech::ssml()
-    ->convert('<speak>Hi There <break /> This is SSML syntax</speak');
+    ->convert('<speak>Hi There <break /> This is SSML syntax</speak>');
 
 // using speech marks.
 $output = TextToSpeech::speechMarks(['sentence', 'word', 'viseme', 'ssml'])
