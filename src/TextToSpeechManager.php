@@ -6,7 +6,9 @@ use Aws\Credentials\Credentials;
 use Aws\Polly\PollyClient;
 use Cion\TextToSpeech\Converters\NullConverter;
 use Cion\TextToSpeech\Converters\PollyConverter;
+use Cion\TextToSpeech\Converters\SixtyDBConverter;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Manager;
 
 class TextToSpeechManager extends Manager
@@ -52,8 +54,8 @@ class TextToSpeechManager extends Manager
     protected function setPollyClient(array $config, Credentials $credentials)
     {
         return new PollyClient([
-            'version'     => $config['version'],
-            'region'      => $config['region'],
+            'version' => $config['version'],
+            'region' => $config['region'],
             'credentials' => $credentials,
         ]);
     }
@@ -67,6 +69,11 @@ class TextToSpeechManager extends Manager
     protected function getCredentials(array $credentials)
     {
         return new Credentials($credentials['key'], $credentials['secret'], $credentials['token']);
+    }
+
+    public function createSixtydbDriver()
+    {
+        return new SixtyDBConverter(new Client(), $this->config['tts.services.sixtydb']);
     }
 
     /**

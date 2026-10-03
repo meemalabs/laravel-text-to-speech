@@ -12,7 +12,7 @@
 
 This is a Text-To-Speech package for Laravel. Its primary intention is to use a shared API to easily convert text to speech.
 
-Currently, the only supported driver is Amazon Polly. We are exploring the option to soon support Google WaveNet. Feel free to start a discussion on any possible driver.
+Supported drivers are Amazon Polly and 60db. We are exploring the option to soon support Google WaveNet. Feel free to start a discussion on any possible driver.
 
 ## 💡 Usage
 
@@ -58,6 +58,27 @@ $path = TextToSpeech::ssml()
 $output = TextToSpeech::speechMarks(['sentence', 'word', 'viseme', 'ssml'])
     ->convert('This is a test'); // This will return an array.
 ```
+
+### 60db text-to-speech
+
+Set `TTS_DRIVER=sixtydb`, `SIXTYDB_API_KEY`, and `SIXTYDB_VOICE_ID` to an available
+workspace voice ID. Optionally set `SIXTYDB_MODEL_ID`. Publish the package config
+again or add `services.sixtydb` from `config/config.php` to your existing config.
+
+```php
+TextToSpeech::engine('sixtydb')->saveTo('speech.wav')->convert('Hello world', [
+    'speed' => 1.0,
+]);
+```
+
+The driver uses the existing source, disk and filename APIs and saves mono
+PCM16 WAV at 24 kHz. Use `.wav` output paths. `voice`, `speed` (0.5–2.0), and
+`model` can be overridden per conversion; `language('en-US')` sends `en` as the
+60db target language. Input must be plain UTF-8 text, 1–5000 characters; SSML and
+other output formats are rejected. JSON, NDJSON and binary audio responses are
+supported, with bounded response reads and HTTP errors raised before storage.
+The driver requires a 60db API key and uploads text to the
+[60db synthesis API](https://docs.60db.ai/api-reference/tts/text-to-speech).
 
 ## 🐙 Installation
 

@@ -16,7 +16,7 @@ return [
 
     /**
      * The driver to be used for converting text-to-speech
-     * You can choose polly, or null as of now.
+     * You can choose polly, sixtydb, or null.
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
@@ -61,12 +61,18 @@ return [
      * @see \Cion\TextToSpeech\Contracts\Source
      */
     'sources' => [
-        'text'    => \Cion\TextToSpeech\Sources\TextSource::class,
-        'path'    => \Cion\TextToSpeech\Sources\PathSource::class,
+        'text' => \Cion\TextToSpeech\Sources\TextSource::class,
+        'path' => \Cion\TextToSpeech\Sources\PathSource::class,
         'website' => \Cion\TextToSpeech\Sources\WebsiteSource::class,
     ],
 
     'services' => [
+        'sixtydb' => [
+            'api_key' => env('SIXTYDB_API_KEY', ''),
+            'voice_id' => env('SIXTYDB_VOICE_ID', ''),
+            'model_id' => env('SIXTYDB_MODEL_ID'),
+            'speed' => 1.0,
+        ],
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
@@ -94,9 +100,9 @@ return [
              * IAM Credentials from AWS.
              */
             'credentials' => [
-                'key'     => env('AWS_ACCESS_KEY_ID', ''),
-                'secret'  => env('AWS_SECRET_ACCESS_KEY', ''),
-                'token'   => env('AWS_SESSION_TOKEN', ''),
+                'key' => env('AWS_ACCESS_KEY_ID', ''),
+                'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
+                'token' => env('AWS_SESSION_TOKEN', ''),
             ],
 
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
